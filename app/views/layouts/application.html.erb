@@ -6,7 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<!--Load controller specific stylesheets -->
+<body class="<%= controller.controller_name%>">
 
 <%= yield %>
 
