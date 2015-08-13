@@ -1,4 +1,8 @@
 class Product < ActiveRecord::Base
+	has_many :line_items
+	#Prevent the removal of products that are referenced by line items 
+	before_destroy :ensure_not_referenced_by_any_line_item
+
 	validates :title, :description, :image_url, presence: true 
 	validates :title, uniqueness: true,
 			  length: { minimum: 10, message: "must be at least ten characters long."}
@@ -10,4 +14,15 @@ class Product < ActiveRecord::Base
 	def self.latest
 		Product.order(:updated_at).last
 	end 
+
+	private 
+
+		def ensure_not_referenced_by_any_line_item
+			if line_items.empty? 
+				return true 
+			else 
+				errors.add(:base, 'Line Items present')
+				return false
+			end 
+		end 
 end
