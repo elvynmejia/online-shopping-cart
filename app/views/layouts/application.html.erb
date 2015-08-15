@@ -9,6 +9,21 @@
    <!--Load controller specific stylesheets -->
    <body class="container <%= controller.controller_name%>">
       <%= render 'layouts/header'  %>
+      <div id="columns">
+         <div id="side">
+            <% if @cart %>
+               <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+                  <%= render @cart %>
+               <% end %>
+            <% end %>
+            <ul>
+               <li><%= link_to "Home",  '#' %></li>
+               <li><%= link_to "Questions",  '#' %></li>
+               <li><%= link_to "News",     '#' %></li>
+               <li><%= link_to "Contact",    '#' %></li>
+            </ul>
+         </div>
+      </div>
       <div id="main">
          <%= yield %>   
       </div>
