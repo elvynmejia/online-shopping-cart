@@ -8,7 +8,18 @@
    </head>
    <!--Load controller specific stylesheets -->
    <body class="container <%= controller.controller_name%>">
-      <%= render 'layouts/header'  %>
+      
+      <div id="banner">
+         <%= form_tag store_path, class: 'locale' do %>
+            <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s),
+            onchange: 'this.form.submit()' %>
+            <%= submit_tag 'submit' %>
+            <%= javascript_tag "$('.locale input').hide()" %>
+         <% end %>
+         <%= image_tag "logo.png", alt: "Logo"%>
+         <%= @page_title || t('.title') %>
+      </div>
+
       <div id="columns">
          <div id="side">
             <% if @cart %>
@@ -17,10 +28,10 @@
                <% end %>
             <% end %>
             <ul>
-               <li><%= link_to "Home",  '#' %></li>
-               <li><%= link_to "Questions",  '#' %></li>
-               <li><%= link_to "News",     '#' %></li>
-               <li><%= link_to "Contact",    '#' %></li>
+               <li><%= link_to t('.home'),         '#' %></li>
+               <li><%= link_to t('.questions'),    '#' %></li>
+               <li><%= link_to t('.news'),         '#' %></li>
+               <li><%= link_to t('.contact'),      '#' %></li>
             </ul>
            
 
