@@ -1,2 +1,2 @@
 Depo tutorial. Agile Web Development with Rails 4 by Sam Ruby.
-Some changes to GemFile have been made.  
+Online shopping cart with cart, order, products, and users 
